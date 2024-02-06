@@ -1,0 +1,6 @@
+[submodule "cbr-tools-extra/repository"]
+	path = cbr-tools-extra/repository
+	url = git@github.com:TUM-CBR/cbr-tools-extra.git
+[submodule "ProteinMPNN/repository"]
+	path = ProteinMPNN/repository
+	url = https://github.com/TUM-CBR/ProteinMPNN

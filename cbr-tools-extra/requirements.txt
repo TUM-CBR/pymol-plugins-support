@@ -1,0 +1,8 @@
+biopython @ git+https://github.com/netogallo/biopython.git@a95ae4130580d09107882ee6bdbc159d4803b122
+docopt==0.6.2
+numpy==1.26.3
+primer3-py==2.0.1
+pydantic==2.4.0
+pydantic_core==2.10.0
+pyinstaller==5.13.2
+SQLAlchemy==2.0.25
