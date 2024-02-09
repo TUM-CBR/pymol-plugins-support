@@ -1,0 +1,61 @@
+---
+name: "pre-release"
+
+on:
+  push:
+    branches:
+      - "main"
+    tags-ignore:
+      - "*"
+
+jobs:
+  gh_pre_release:
+    runs-on: "windows-latest"
+    steps:
+      - name: Get current date
+        id: date
+        run: $date = (Get-Date).ToString("yyyyMMdd"); echo "date=$($date)" | Out-File -FilePath $env:GITHUB_ENV
+
+      - name: "Checkout source code"
+        uses: "actions/checkout@v3"
+        with:
+          lfs: true
+          fetch-depth: 0
+          submodules: true
+
+      - name: "Setup Python for Building"
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.6'
+          cache: 'pip' # caching pip dependencies
+
+      - run: pip install -r requirements.txt
+      - run: Build the packages
+        shell: pwsh
+        run: .\package.ps1
+
+      - name: Archive CBR Extra
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: 'zip'
+          filename: "../cbr-tools-extra-${{ env.date }}-win64.zip"
+          directory: dist/
+          path: cbrtools
+
+      - name: Archive ProteinMPNN
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: 'zip'
+          filename: "../proteinMPNN-${{ env.date }}-win64.zip"
+          directory: dist/
+          path: proteinMPNN
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.RELEASE_ACCESS_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: "nightly-${{ env.date }}"
+          title: "Nightly Build ${{ env.date }}"
+          files:
+            - "cbr-tools-extra-${{ env.date }}-win64.zip"
+            - "proteinMPNN-${{ env.date }}-win64.zip"

@@ -27,7 +27,7 @@ if (Test-Path virtualenv) {
     Remove-Item -Recurse virtualenv
 }
 python -m virtualenv virtualenv
-.\virtualenv\Scripts\pip install ..\requirements.txt
+.\virtualenv\Scripts\pip install -r ..\requirements.txt
 .\virtualenv\Scripts\pyinstaller.exe -n proteinMPNN `
     --add-data "soluble_model_weights\v_48_002.pt;soluble_model_weights\" `
     --add-data "soluble_model_weights\v_48_010.pt;soluble_model_weights\" `
@@ -39,4 +39,5 @@ python -m virtualenv virtualenv
     --add-data "vanilla_model_weights\v_48_020.pt;vanilla_model_weights\" `
     --add-data "vanilla_model_weights\v_48_030.pt;vanilla_model_weights\" `
     --distpath ..\..\dist\ protein_mpnn_run.py
+Set-Location $current_directory
 #############################################################################################################################
