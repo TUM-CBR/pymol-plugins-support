@@ -58,6 +58,6 @@ jobs:
           prerelease: true
           automatic_release_tag: "nightly-${{ env.date }}"
           title: "Nightly Build ${{ env.date }}"
-          files:
-            - "cbr-tools-extra-${{ env.date }}-win64.zip"
-            - "proteinMPNN-${{ env.date }}-win64.zip"
+          files: |
+            cbr-tools-extra-${{ env.date }}-win64.zip
+            proteinMPNN-${{ env.date }}-win64.zip
