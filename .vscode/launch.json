@@ -18,7 +18,27 @@
                 "--chains_to_design_multi", "${workspaceFolder}/scratch/2nox/assigned.jsonl",
                 "--omit_AA_per_residue_multi", "${workspaceFolder}/scratch/2nox/excluded.jsonl",
                 "--batch_size", "1",
-                "--number_of_batches", "15",
+                "--number_of_batches", "3",
+                "--symmetry_residues_multi", "${workspaceFolder}/scratch/2nox/tied.jsonl"
+            ],
+            "cwd": "${workspaceFolder}/LigandMPNN/repository",
+            "justMyCode": false
+        },
+        {
+            "name": "LigandMPNN Windows",
+            "type": "debugpy",
+            "request": "launch",
+            "python": "${workspaceFolder}/.virtualenv/Scripts/python",
+            "program": "${workspaceFolder}/LigandMPNN/repository/run.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--out_folder", "${workspaceFolder}/scratch/2nox/results",
+                "--model_type", "protein_mpnn",
+                "--pdb_path_multi", "${workspaceFolder}/scratch/2nox/models.json",
+                "--chains_to_design_multi", "${workspaceFolder}/scratch/2nox/assigned.jsonl",
+                "--omit_AA_per_residue_multi", "${workspaceFolder}/scratch/2nox/excluded.jsonl",
+                "--batch_size", "1",
+                "--number_of_batches", "3",
                 "--symmetry_residues_multi", "${workspaceFolder}/scratch/2nox/tied.jsonl"
             ],
             "cwd": "${workspaceFolder}/LigandMPNN/repository",
