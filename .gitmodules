@@ -4,3 +4,6 @@
 [submodule "ProteinMPNN/repository"]
 	path = ProteinMPNN/repository
 	url = https://github.com/TUM-CBR/ProteinMPNN
+[submodule "LigandMPNN/repository"]
+	path = LigandMPNN/repository
+	url = git@github.com:TUM-CBR/LigandMPNN.git
