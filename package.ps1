@@ -9,14 +9,13 @@ $current_directory = (Get-Location).Path
 #############################################################################################################################
 # Create the CBR Extra package
 #############################################################################################################################
-#Set-Location cbr-tools-extra\repository
-#if (Test-Path virtualenv) {
-#    Remove-Item -Recurse virtualenv
-#}
-#python -m virtualenv virtualenv
-#.\virtualenv\Scripts\pip.exe install -r ..\requirements.txt
-#.\virtualenv\Scripts\pyinstaller.exe -n cbrtools --collect-all primer3 --distpath ..\..\dist\ cbrtools.py
-#Set-Location $current_directory
+Set-Location cbr-tools-extra\repository
+if (!(Test-Path virtualenv)) {
+    python -m virtualenv virtualenv
+}
+.\virtualenv\Scripts\pip.exe install -r ..\requirements.txt
+.\virtualenv\Scripts\pyinstaller.exe -n cbrtools --collect-all primer3 --distpath ..\..\dist\ cbrtools.py
+Set-Location $current_directory
 #############################################################################################################################
 
 #############################################################################################################################
@@ -46,12 +45,12 @@ $current_directory = (Get-Location).Path
 # LigandMPNN package
 #############################################################################################################################
 Set-Location LigandMPNN\repository
-if (Test-Path virtualenv) {
-    Remove-Item -Recurse virtualenv
+if (!(Test-Path virtualenv)) {
+    python -m virtualenv virtualenv
 }
-python -m virtualenv virtualenv
+& .\get_model_params.ps1 .\model_params\
 .\virtualenv\Scripts\pip install -r ..\requirements.txt
-.\virtualenv\Scripts\pyinstaller.exe -n ligandMPNN `
+.\virtualenv\Scripts\pyinstaller.exe -n ligandmpnn `
     --add-data "model_params\global_label_membrane_mpnn_v_48_020.pt;model_params\" `
     --add-data "model_params\ligandmpnn_v_32_005_25.pt;model_params\" `
     --add-data "model_params\ligandmpnn_v_32_010_25.pt;model_params\" `
@@ -66,5 +65,7 @@ python -m virtualenv virtualenv
     --add-data "model_params\solublempnn_v_48_010.pt;model_params\" `
     --add-data "model_params\solublempnn_v_48_020.pt;model_params\" `
     --add-data "model_params\solublempnn_v_48_030.pt;model_params\" `
+    --collect-data "Bio.Align" `
+    --collect-data "prody.utilities.datafiles" `
     --distpath ..\..\dist\ run.py
 Set-Location $current_directory

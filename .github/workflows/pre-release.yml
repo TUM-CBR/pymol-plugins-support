@@ -44,13 +44,13 @@ jobs:
           directory: dist/
           path: cbrtools
 
-      - name: Archive ProteinMPNN
+      - name: Archive LigandMPNN
         uses: thedoctor0/zip-release@0.7.1
         with:
           type: 'zip'
-          filename: "../proteinMPNN-${{ env.date }}-win64.zip"
+          filename: "../ligandmpnn-${{ env.date }}-win64.zip"
           directory: dist/
-          path: proteinMPNN
+          path: ligandmpnn
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -60,4 +60,4 @@ jobs:
           title: "Nightly Build ${{ env.date }}"
           files: |
             cbr-tools-extra-${{ env.date }}-win64.zip
-            proteinMPNN-${{ env.date }}-win64.zip
+            ligandmpnn-${{ env.date }}-win64.zip
