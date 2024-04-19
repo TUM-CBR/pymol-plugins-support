@@ -52,6 +52,14 @@ jobs:
           directory: dist/
           path: ligandmpnn
 
+      - name: Archive Pdb2Pqr
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: 'zip'
+          filename: '../pdb2pqr-${{ env.date }}-win64.zip'
+          directory: dist/
+          path: pdb2pqr
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.RELEASE_ACCESS_TOKEN }}"
@@ -61,3 +69,4 @@ jobs:
           files: |
             cbr-tools-extra-${{ env.date }}-win64.zip
             ligandmpnn-${{ env.date }}-win64.zip
+            pdb2pqr-${{ env.date }}-win64.zip
