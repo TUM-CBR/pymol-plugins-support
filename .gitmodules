@@ -7,3 +7,6 @@
 [submodule "LigandMPNN/repository"]
 	path = LigandMPNN/repository
 	url = git@github.com:TUM-CBR/LigandMPNN.git
+[submodule "pdb2pqr/repository"]
+	path = pdb2pqr/repository
+	url = https://github.com/Electrostatics/pdb2pqr.git
